@@ -6,10 +6,13 @@ phases:
       python: 3.9
     commands:
       - pip install -r requirements.txt
+  pre_build:
+    commands:
+      - pytest
   build:
     commands:
-      - echo "Iniciando las pruebas del código..."
-      - pytest
+      - echo "Building the Docker image..."
+      - docker build -t mi-app .
   post_build:
     commands:
-      - echo "¡Todo salió bien! Pruebas finalizadas."
+      - echo "Build completed successfully!"
